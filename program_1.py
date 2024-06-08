@@ -1,5 +1,6 @@
 import shutil
 import subprocess
+import os
 
 # Список путей к файлам, которые нужно скопировать
 files_to_copy = ['var/log/secure', 
@@ -22,9 +23,9 @@ for file in files_to_copy:
 # Добавление всех полномочий file_admin.sh
 
 # Путь к файлу .sh
-script_path = 'file_admin.sh'
+#script_path = 'file_admin.sh'
 
 # Запуск скрипта .sh
-subprocess.call([script_path])
+#subprocess.call([script_path])
 
 #f = open('secure', 'r')
