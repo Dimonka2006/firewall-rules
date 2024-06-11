@@ -68,3 +68,10 @@ grep_output = unix_cmd.run("grep 'ssh' secure")
 # Запись результатов в файл
 with open('output_file.txt', 'w') as output_file:
     output_file.write(grep_output)
+
+
+grep_output = unix_cmd.run("grep 'ssh' secure-20240*")
+
+
+with open('output_file.txt', 'a') as output_file:
+    output_file.write(grep_output)
