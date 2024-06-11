@@ -66,12 +66,19 @@ for file_or_folder in files_and_folders:
 grep_output = unix_cmd.run("grep 'ssh' secure")
 
 # Запись результатов в файл
-with open('output_file.txt', 'w') as output_file:
+with open('Predlogfile.txt', 'w') as output_file:
     output_file.write(grep_output)
 
 
 grep_output = unix_cmd.run("grep 'ssh' secure-20240*")
 
-
-with open('output_file.txt', 'a') as output_file:
+with open('Predlogfile.txt', 'a') as output_file:
     output_file.write(grep_output)
+
+grep_output2 = unix_cmd.run("grep 'invalid user' Predlogfile.txt")
+
+# Запись результатов в файл
+with open('logfile.txt', 'w') as output_file:
+    output_file.write(grep_output2)
+# May 18 21:33:38 srv503956 sshd[175839]: Connection closed by invalid user
+#  root 85.209.11.27 port 6344 [preauth]  пример строки
