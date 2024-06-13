@@ -10,11 +10,13 @@ myfile = open(inputfile, 'r', encoding='utf-8')
 myfile2 = open(outputfile, 'w', encoding='utf-8') 
 for line in myfile:
     if "invalid" in line:
-        print(str(line))
+        #print(str(line))
         myfile2.write(str(line))
+        Print("generated work.txt")
 
 myfile.close()
 myfile2.close()
+
 
 import re
 from collections import defaultdict
@@ -50,6 +52,7 @@ for match in ip_pattern.finditer(content):
         with open(output_file, 'a+') as out_file:
             out_file.write(f'{ip}\n')
         unique_ips[ip] = True
+        print("generatad logfile.txt")
 
 # Закрытие нового файла
 out_file.close()
@@ -76,3 +79,4 @@ with open(rules_file, 'w') as rules_file_obj:
             
             # Записываем сформированную команду в файл с правилами
             rules_file_obj.write(f'{command}\n')
+            print("Generatad rules.txt")
