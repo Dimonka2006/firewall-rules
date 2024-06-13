@@ -1,7 +1,6 @@
 import shutil
-#import subprocess
 import os
-import unix_cmd
+
 
 # Путь к каталогу, куда будут скопированы файлы
 dst = 'home/programfid/app/works'
@@ -21,15 +20,6 @@ files_to_copy = ['var/log/secure',
 # Копирование каждого файла из списка
 for file in files_to_copy:
     shutil.copy(file, dst)
-
-# Добавление всех полномочий file_admin.sh
-
-# Путь к файлу .sh
-#script_path = 'file_admin.sh'
-
-# Запуск скрипта .sh
-#subprocess.call([script_path])
-
 
 # Изменение владельца файла или каталога, добавление прав
 os.chown(dst, 'programfid', 'programfid')
@@ -59,26 +49,3 @@ for file_or_folder in files_and_folders:
     file_or_folder_path = join(dst, file_or_folder)
     change_permissions_and_owner(file_or_folder_path)
 
-#f = open('secure', 'r')
-
-
-# Запуск команды grep из Python скрипта
-grep_output = unix_cmd.run("grep 'ssh' secure")
-
-# Запись результатов в файл
-with open('Predlogfile.txt', 'w') as output_file:
-    output_file.write(grep_output)
-
-
-grep_output = unix_cmd.run("grep 'ssh' secure-20240*")
-
-with open('Predlogfile.txt', 'a') as output_file:
-    output_file.write(grep_output)
-
-grep_output2 = unix_cmd.run("grep 'invalid user' Predlogfile.txt")
-
-# Запись результатов в файл
-with open('logfile.txt', 'w') as output_file:
-    output_file.write(grep_output2)
-# May 18 21:33:38 srv503956 sshd[175839]: Connection closed by invalid user
-#  root 85.209.11.27 port 6344 [preauth]  пример строки
