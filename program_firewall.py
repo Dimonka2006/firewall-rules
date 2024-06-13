@@ -7,7 +7,7 @@ inputfile = "secure"
 outputfile = "work.txt"
 
 myfile = open(inputfile, 'r', encoding='utf-8')
-myfile2 = open(outputfile, 'a', encoding='utf-8') 
+myfile2 = open(outputfile, 'w', encoding='utf-8') 
 for line in myfile:
     if "invalid" in line:
         print(str(line))
@@ -53,3 +53,26 @@ for match in ip_pattern.finditer(content):
 
 # Закрытие нового файла
 out_file.close()
+
+import subprocess
+
+# Путь к файлу с IP-адресами, каждый адрес на новой строке
+ip_file = 'logfile.txt'
+
+# Путь к файлу, куда будут сохранены команды iptables
+rules_file = 'rules.txt'
+
+# Открываем файл для записи команд iptables
+with open(rules_file, 'w') as rules_file_obj:
+    # Открываем файл с IP-адресами для чтения
+    with open(ip_file, 'r') as ip_file_obj:
+        # Читаем все строки файла с IP-адресами
+        for line in ip_file_obj:
+            # Удаляем символ новой строки в конце каждой строки
+            ip = line.strip()
+            
+            # Формируем команду iptables
+            command = f'iptables -A INPUT -s {ip} -j DROP'
+            
+            # Записываем сформированную команду в файл с правилами
+            rules_file_obj.write(f'{command}\n')
