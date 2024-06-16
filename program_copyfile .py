@@ -1,21 +1,37 @@
 import shutil
 import os
-
+import re
 
 # Путь к каталогу, куда будут скопированы файлы
 dst = 'home/programfid/app/works'
+directory_path = 'var/log/'
 
 # Создание каталога, если он еще не существует
 if not os.path.exists(dst):
     os.makedirs(dst)
     
 # Список путей к файлам, которые нужно скопировать
-files_to_copy = ['var/log/secure', 
-                 'var/log/secure-20240512',
-                  'var/log/secure-20240519',
-                  'var/log/secure-20240526', 
-                  'var/log/secure-20240602']
+#files_to_copy = ['var/log/secure', 
+#                 'var/log/secure-20240512',
+ #                 'var/log/secure-20240519',
+  #                'var/log/secure-20240526', 
+   #               'var/log/secure-20240602']
+files_to_copy = []
 
+# Перебор всех файлов в директории
+for file in os.listdir(directory_path):
+
+# Регулярное выражение для поиска совпадений
+        pattern = re.compile('secure')
+        
+        # Поиск совпадения в имени файла
+        match = pattern.search(file)
+        
+        # Если совпадение найдено, добавляем значение в список
+        if match:
+            files_to_copy.append(match.group())
+
+print(files_to_copy)
 
 # Копирование каждого файла из списка
 for file in files_to_copy:

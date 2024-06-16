@@ -12,7 +12,7 @@ for line in myfile:
     if "invalid" in line:
         #print(str(line))
         myfile2.write(str(line))
-        Print("generated work.txt")
+            
 
 myfile.close()
 myfile2.close()
