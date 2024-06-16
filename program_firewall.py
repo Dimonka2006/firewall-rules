@@ -1,14 +1,16 @@
-
+import subprocess
 
 #filename = input("Enter correct file name")
 #inputfile = "filename"
 
-inputfile = "secure"
+inputfile = "logfile"
 outputfile = "work.txt"
 
 myfile = open(inputfile, 'r', encoding='utf-8')
+# Создание промежуточного текстового файла (отфильтрованного)
 myfile2 = open(outputfile, 'w', encoding='utf-8') 
 for line in myfile:
+    # Создание фильтра
     if "invalid" in line:
         #print(str(line))
         myfile2.write(str(line))
@@ -17,15 +19,14 @@ for line in myfile:
 myfile.close()
 myfile2.close()
 
-
 import re
 from collections import defaultdict
 
-# Путь к исходному текстовому файлу
+# Путь к промежуточному текстовому файлу
 source_file = 'work.txt'
 
 # Путь к новому текстовому файлу, куда будут сохранены уникальные IP-адреса
-output_file = 'logfile.txt'
+output_file = 'spisok_id.txt'
 
 # Словарь для хранения уникальных IP-адресов
 unique_ips = defaultdict(bool)
@@ -52,15 +53,15 @@ for match in ip_pattern.finditer(content):
         with open(output_file, 'a+') as out_file:
             out_file.write(f'{ip}\n')
         unique_ips[ip] = True
-        print("generatad logfile.txt")
+        print("generatad spisok_id.txt")
 
 # Закрытие нового файла
 out_file.close()
 
-import subprocess
+
 
 # Путь к файлу с IP-адресами, каждый адрес на новой строке
-ip_file = 'logfile.txt'
+ip_file = 'pisok_id.txt'
 
 # Путь к файлу, куда будут сохранены команды iptables
 rules_file = 'rules.txt'

@@ -31,6 +31,12 @@ for file in os.listdir(directory_path):
         if match:
             files_to_copy.append(match.group())
 
+
+# Открытие файла для записи (если файл не существует, он будет создан)
+with open('logfile', 'w') as file:
+    # Запись строки в файл
+    file.write('files_to_copy.\n')
+
 print(files_to_copy)
 
 # Копирование каждого файла из списка
