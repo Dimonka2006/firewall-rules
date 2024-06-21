@@ -12,7 +12,6 @@ myfile2 = open(outputfile, 'w', encoding='utf-8')
 for line in myfile:
     # Создание фильтра
     if "invalid" in line:
-        #print(str(line))
         myfile2.write(str(line))
             
 
